@@ -1,3 +1,4 @@
+// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
@@ -22,14 +23,30 @@ $(function () {
 
   let description = document.getElementsByClassName("description");
   let mainContainer = document.getElementById("mainContainer");
-
+  let currentDay = document.getElementById("currentDay");
   let saveBtn = document.getElementsByClassName("saveBtn");
 
+  currentDay.textContent = moment().format('MMMM Do YYYY hh:mm');
+
+  
+  for (var i = 9;i<=17;i++){
+    var rightNow= `${moment().format('H')}`;
+    if(i<rightNow){
+      $(`#hour-${i}`).addClass("past")
+    }
+    else if(i == rightNow){
+      $(`#hour-${i}`).addClass("present")
+    }else{
+      $(`#hour-${i}`).addClass("future")
+    }
+  }
+
+  
 
 
 
   function getDescriptionTextarea(event) {
-    console.log(event.target.className);
+    var parentID = event.target.parentNode.id;
   }
 
   mainContainer.addEventListener("click", getDescriptionTextarea);
