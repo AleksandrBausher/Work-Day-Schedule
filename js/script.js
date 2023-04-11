@@ -26,27 +26,35 @@ $(function () {
   let currentDay = document.getElementById("currentDay");
   let saveBtn = document.getElementsByClassName("saveBtn");
 
-  currentDay.textContent = moment().format('MMMM Do YYYY hh:mm');
+  currentDay.textContent = moment().format("MMMM Do YYYY hh:mm");
 
-  
-  for (var i = 9;i<=17;i++){
-    var rightNow= `${moment().format('H')}`;
-    if(i<rightNow){
-      $(`#hour-${i}`).addClass("past")
-    }
-    else if(i == rightNow){
-      $(`#hour-${i}`).addClass("present")
-    }else{
-      $(`#hour-${i}`).addClass("future")
+  for (var i = 9; i <= 17; i++) {
+    var rightNow = `${moment().format("H")}`;
+    if (i < rightNow) {
+      $(`#hour-${i}`).addClass("past");
+    } else if (i == rightNow) {
+      $(`#hour-${i}`).addClass("present");
+    } else {
+      $(`#hour-${i}`).addClass("future");
     }
   }
 
-  
-
-
-
   function getDescriptionTextarea(event) {
-    var parentID = event.target.parentNode.id;
+    var parentDiv = event.target.parentNode;
+
+    if (
+      event.target.className === "btn saveBtn col-2 col-md-1" ||
+      event.target.className === "fas fa-save"
+    ) {
+      var writtenData = "";
+      if (event.target.className === "fas fa-save") {
+        writtenData = parentDiv.parentNode.children[1].value;
+      } else {
+        writtenData = parentDiv.children[1].value;
+      }
+      localStorage.setItem(parentDiv.id, writtenData);
+
+    }
   }
 
   mainContainer.addEventListener("click", getDescriptionTextarea);
