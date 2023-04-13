@@ -39,8 +39,15 @@ $(function () {
     }
   }
 
+  for(var i = 0; i<localStorage.length;i++){
+    if(localStorage.key(i).startsWith('hour')){
+      $(`#${localStorage.key(i)}`)[0].children[1].textContent = localStorage.getItem(localStorage.key(i))
+    }
+  }
+
   function getDescriptionTextarea(event) {
     var parentDiv = event.target.parentNode;
+    
 
     if (
       event.target.className === "btn saveBtn col-2 col-md-1" ||
