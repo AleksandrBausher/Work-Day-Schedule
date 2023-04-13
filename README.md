@@ -32,7 +32,7 @@ Click here to access my [Work Day Schedule](https://aleksandrbausher.github.io/W
 To know more about me and my projects
 
 ## Screenshot
-![First Screen](./images/screenshot1.png "screen1")
+![First Screen](./images/screenshot.png "screen1")
 
 ## Contribution
 
